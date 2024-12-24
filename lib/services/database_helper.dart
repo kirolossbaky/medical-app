@@ -1,24 +1,33 @@
-import 'package:sqflite/sqflite.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import '../models/medication.dart';
 import '../models/schedule.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._();
+  static final DatabaseHelper _instance = DatabaseHelper._internal();
   static Database? _database;
 
-  DatabaseHelper._();
   factory DatabaseHelper() => _instance;
 
+  DatabaseHelper._internal();
+
   Future<Database> get database async {
-    _database ??= await _initDB();
+    if (kIsWeb) {
+      throw UnsupportedError('SQLite database is not supported on web platform');
+    }
+    
+    if (_database != null) return _database!;
+    _database = await _initDatabase();
     return _database!;
   }
 
-  Future<Database> _initDB() async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'medical_app.db');
-
+  Future<Database> _initDatabase() async {
+    if (kIsWeb) {
+      throw UnsupportedError('SQLite database is not supported on web platform');
+    }
+    
+    final String path = join(await getDatabasesPath(), 'medical_app.db');
     return await openDatabase(
       path,
       version: 1,

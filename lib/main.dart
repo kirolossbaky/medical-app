@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'providers/medication_provider.dart';
 import 'providers/schedule_provider.dart';
 import 'providers/pharmacy_provider.dart';
@@ -11,8 +12,10 @@ import 'services/database_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize database
-  await DatabaseHelper().database;
+  // Initialize database only if not on web
+  if (!kIsWeb) {
+    await DatabaseHelper().database;
+  }
   
   runApp(const MyApp());
 }
@@ -30,13 +33,18 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ScheduleProvider()),
         ChangeNotifierProvider(create: (_) => PharmacyProvider()),
       ],
-      child: Consumer2<ThemeProvider, AuthProvider>(
-        builder: (context, themeProvider, authProvider, _) {
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
           return MaterialApp(
             title: 'Medical App',
-            theme: themeProvider.theme,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              useMaterial3: true,
+            ),
+            darkTheme: ThemeData.dark(useMaterial3: true),
+            themeMode: themeProvider.themeMode,
+            initialRoute: '/',
             onGenerateRoute: Routes.generateRoute,
-            initialRoute: authProvider.isAuthenticated ? Routes.home : Routes.login,
           );
         },
       ),
