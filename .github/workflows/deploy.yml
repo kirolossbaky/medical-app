@@ -1,7 +1,9 @@
-name: Deploy to GitHub Pages
+name: Flutter Web Deploy
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
@@ -13,30 +15,42 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - uses: actions/checkout@v3
       
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
+          flutter-version: '3.16.0'
           channel: 'stable'
+          cache: true
       
       - name: Install dependencies
         run: flutter pub get
         
-      - name: Build
-        run: flutter build web --release --base-href "/medical-app/"
+      - name: Analyze project source
+        run: flutter analyze
         
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Run tests
+        run: flutter test
+        
+      - name: Build web
+        run: flutter build web --base-href "/medical-app/"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './build/web'
-          
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
