@@ -1,99 +1,88 @@
 # Medical App
 
-A comprehensive Flutter-based medical application for medication management and tracking.
+A comprehensive medical application for managing medications, schedules, and health information.
 
-## Features
+## 📱 Screenshots
 
-- **Medication Management**
-  - Track medications and dosages
-  - Set medication reminders
-  - View medication history
-  - Drug information and interactions
+### Login Screen
+![Login Screen](docs/screenshots/login.png)
+- Secure authentication
+- Email and password validation
+- Remember me functionality
 
-- **Authentication**
-  - Secure user login
-  - Profile management
-  - Data privacy
+### Dashboard
+![Dashboard](docs/screenshots/dashboard.png)
+- Overview of daily medications
+- Quick access to important features
+- Health statistics and reminders
 
-- **Pharmacy Integration**
-  - View nearby pharmacies
-  - Order medications
-  - Track prescriptions
+### Medication Management
+![Medications](docs/screenshots/medications.png)
+- Add and manage medications
+- Set dosage and schedule
+- View medication history
 
-- **Schedule Management**
-  - Medication schedule tracking
-  - Appointment reminders
-  - Calendar integration
+### Schedule
+![Schedule](docs/screenshots/schedule.png)
+- Daily medication schedule
+- Reminder notifications
+- Mark medications as taken
 
-- **Theme Support**
-  - Dark/Light mode
-  - Customizable UI
-  - Responsive design
+### Pharmacy Locator
+![Pharmacy](docs/screenshots/pharmacy.png)
+- Find nearby pharmacies
+- View pharmacy details
+- Get directions
 
-## Getting Started
+### Settings
+![Settings](docs/screenshots/settings.png)
+- Customize app theme
+- Notification preferences
+- Profile management
 
-### Prerequisites
+## 🚀 Features
 
-- Flutter (latest version)
-- Dart SDK
-- Android Studio / VS Code
-- Git
+- **Medication Management**: Track your medications, dosages, and schedules
+- **Reminder System**: Get notifications for medication times
+- **Pharmacy Locator**: Find nearby pharmacies and get directions
+- **Health Tracking**: Monitor your health metrics and medication adherence
+- **Profile Management**: Manage your personal and medical information
+- **Dark Mode**: Comfortable viewing in any lighting condition
 
-### Installation
+## 🛠️ Technical Details
+
+- Built with Flutter for cross-platform compatibility
+- Material Design 3 UI components
+- Local SQLite database for offline data storage
+- Push notifications for reminders
+- Location services for pharmacy finding
+- Secure data storage and encryption
+
+## 🔧 Installation
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/kirolossbaky/medical-app.git
 ```
 
-2. Navigate to the project directory:
-```bash
-cd medical-app
-```
-
-3. Install dependencies:
+2. Install dependencies:
 ```bash
 flutter pub get
 ```
 
-4. Run the app:
+3. Run the app:
 ```bash
 flutter run
 ```
 
-## Project Structure
+## 🤝 Contributing
 
-```
-lib/
-├── models/          # Data models
-├── providers/       # State management
-├── screens/         # UI screens
-├── services/        # Business logic
-└── main.dart        # Entry point
-```
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Technologies Used
+## 📄 License
 
-- Flutter
-- Provider for state management
-- SQLite for local storage
-- Shared Preferences for settings
-- Material Design
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
+## 📞 Contact
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contact
-
-Your Name - [@kirolossbaky](https://github.com/kirolossbaky)
-
-Project Link: [https://github.com/kirolossbaky/medical-app](https://github.com/kirolossbaky/medical-app)
+Kirolos Baky - [GitHub](https://github.com/kirolossbaky)
